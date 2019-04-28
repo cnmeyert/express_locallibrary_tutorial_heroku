@@ -17,7 +17,8 @@ app.use(helmet());
 
 // setup Mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://cnmeyert:uyP7VTQ7a9799MyX@clustercme-h4uu4.mongodb.net/local_library?retryWrites=true';
+var dev_db_url = 'mongodb+srv://cnmeyert:uyP7VTQ7a9799MyX@clustercme-h4uu4.mongodb.net/local_library?retryWrites=true';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
